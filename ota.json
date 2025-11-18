@@ -1,6 +1,7 @@
 {
     "firmware": {
         "version": "2.0.4",
-        "url": ""
+        "url": "https://cdn.jsdelivr.net/gh/TienHuyIoT/esp_web_flasher@master/ota_bin/xingzhi-cube-1.54tft-wifi.bin",
+        "force": 1
     }
 }
