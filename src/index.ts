@@ -3,7 +3,7 @@ export default {
     const url = new URL(request.url);
 
     // Xử lý GET/POST /ota.json
-    if (url.pathname === "/ota") {
+    if (url.pathname === "/ota" || url.pathname === "/ota/") {
 
       // Import file JSON
       const data = await import("../ota.json");

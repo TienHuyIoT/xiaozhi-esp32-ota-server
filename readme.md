@@ -1,9 +1,9 @@
 # OTA Server trên Cloudflare Workers
 
 - Link cập nhật OTA
-[https://ota-server.xiaozhi-ota.workers.dev/ota](https://ota-server.xiaozhi-ota.workers.dev/ota)
+[https://ota-server.xiaozhi-ota.workers.dev/ota/](https://ota-server.xiaozhi-ota.workers.dev/ota/)
 
-Đây là hướng dẫn tạo một **OTA server** đơn giản trên **Cloudflare Workers** để ESP32 hoặc thiết bị IoT có thể **GET/POST** lấy file `ota.json`.
+Hướng dẫn tạo một **OTA server** đơn giản trên **Cloudflare Workers** để ESP32 hoặc thiết bị IoT có thể **GET/POST** lấy file `ota.json`.
 
 ---
 
@@ -144,5 +144,5 @@ wrangler deploy
 
 ---
 
-> Hướng dẫn này dùng **gói Cloudflare Workers Free**, đủ cho **100k requests/ngày**, hoàn toàn miễn phí cho OTA server nhỏ.
+> Dùng **gói Cloudflare Workers Free**, đủ cho **100k requests/ngày**, hoàn toàn miễn phí cho OTA server nhỏ.
 
