@@ -1,8 +1,9 @@
 {
     "firmware": {
-        "version": "2.0.4",
-        "url": "https://cdn.jsdelivr.net/gh/TienHuyIoT/esp_web_flasher@master/ota_bin/xingzhi-cube-1.54tft-wifi_1.bin",
-        "size": 3304176,
-        "force": 1
+        "name": "xingzhi-cube-1.54tft-wifi",
+        "version": "2.0.5",
+        "url": "https://cdn.jsdelivr.net/gh/TienHuyIoT/esp_web_flasher@master/ota_bin/xingzhi-cube-1.54tft-wifi_music_radio_2.0.5.bin",
+        "size": 3304464,
+        "force": 0
     }
 }
