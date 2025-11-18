@@ -1,0 +1,119 @@
+Header for check version request:
+    Activation-Version  : 1
+    Device-Id           : 90:70:69:19:9d:00
+    Client-Id           : 15040d5c-6f08-4244-9062-b467dab3f290
+    User-Agent          : xingzhi-cube-1.54tft-wifi/2.0.4
+    Accept-Language     : vi-VN
+    Content-Type        : application/json
+
+Check version URL: https://api.tenclass.net/xiaozhi/ota/
+Method: POST
+Body for check version request data:
+
+{
+  "version": 2,
+  "language": "vi-VN",
+  "flash_size": 16777216,
+  "minimum_free_heap_size": "8377212",
+  "mac_address": "90:70:69:...",
+  "uuid": "15040d5c-6f08-4244-9062-....",
+  "chip_model_name": "esp32s3",
+  "chip_info": {
+    "model": 9,
+    "cores": 2,
+    "revision": 2,
+    "features": 18
+  },
+  "application": {
+    "name": "xiaozhi",
+    "version": "2.0.4",
+    "compile_time": "Nov 16 2025T11:28:08Z",
+    "idf_version": "v5.5.1",
+    "elf_sha256": "d62e9efb413a4fba304f77d431d970886ff83e28a94dea96..."
+  },
+  "partition_table": [
+    {
+      "label": "nvs",
+      "type": 1,
+      "subtype": 2,
+      "address": 36864,
+      "size": 16384
+    },
+    {
+      "label": "otadata",
+      "type": 1,
+      "subtype": 0,
+      "address": 53248,
+      "size": 8192
+    },
+    {
+      "label": "phy_init",
+      "type": 1,
+      "subtype": 1,
+      "address": 61440,
+      "size": 4096
+    },
+    {
+      "label": "ota_0",
+      "type": 0,
+      "subtype": 16,
+      "address": 131072,
+      "size": 4128768
+    },
+    {
+      "label": "ota_1",
+      "type": 0,
+      "subtype": 17,
+      "address": 4259840,
+      "size": 4128768
+    },
+    {
+      "label": "assets",
+      "type": 1,
+      "subtype": 130,
+      "address": 8388608,
+      "size": 8388608
+    }
+  ],
+  "ota": {
+    "label": "ota_0"
+  },
+  "display": {
+    "monochrome": false,
+    "width": 240,
+    "height": 240
+  },
+  "board": {
+    "type": "xingzhi-cube-1.54tft-wifi",
+    "name": "xingzhi-cube-1.54tft-wifi",
+    "ssid": "Quyen_2.4G",
+    "rssi": -26,
+    "channel": 12,
+    "ip": "192.168.1.43",
+    "mac": "90:70:69:19:9d:00"
+  }
+}
+
+Server response:
+{
+    "mqtt": {
+        "endpoint": "mqtt.xiaozhi.me",
+        "client_id": "GID_test@@@90_70_69_19_9d_00@@@15040d5c-6f08-4244-9062-...",
+        "username": "eyJpcCI6IjE3MS4yNDAu...",
+        "password": "2wKM7rd6bgXz9oRj24QsOs/EI9Y7QF...",
+        "publish_topic": "device-server",
+        "subscribe_topic": "null"
+    },
+    "websocket": {
+        "url": "wss://api.tenclass.net/xiaozhi/v1/",
+        "token": "test-token"
+    },
+    "server_time": {
+        "timestamp": 1763450769828,
+        "timezone_offset": 420
+    },
+    "firmware": {
+        "version": "2.0.4",
+        "url": ""
+    }
+}
