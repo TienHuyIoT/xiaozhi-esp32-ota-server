@@ -13,6 +13,24 @@ interface RequestBody {
   [key: string]: any;
 }
 
+// Function to compare version strings (e.g., "2.0.4" vs "2.0.5")
+function compareVersions(version1: string, version2: string): number {
+  const v1Parts = version1.split('.').map(Number);
+  const v2Parts = version2.split('.').map(Number);
+  
+  const maxLength = Math.max(v1Parts.length, v2Parts.length);
+  
+  for (let i = 0; i < maxLength; i++) {
+    const v1Part = v1Parts[i] || 0;
+    const v2Part = v2Parts[i] || 0;
+    
+    if (v1Part > v2Part) return 1;
+    if (v1Part < v2Part) return -1;
+  }
+  
+  return 0; // versions are equal
+}
+
 export default {
   async fetch(request: Request): Promise<Response> {
     const url = new URL(request.url);
@@ -34,10 +52,26 @@ export default {
           // Get name from ota.json (in firmware object)
           const serverName = data.default?.firmware?.name;
           
+          // Get version from client (in application object)
+          const clientVersion = requestBody?.application?.version;
+          
+          // Get version from ota.json (in firmware object)
+          const serverVersion = data.default?.firmware?.version;
+          
           // Compare names
           if (clientName && clientName === serverName) {
-            // Return normal JSON if matched
-            return new Response(JSON.stringify(data.default), {
+            // Create response data (deep copy to avoid mutation)
+            const responseData = JSON.parse(JSON.stringify(data.default));
+            
+            // Compare versions - if client version > server version, set force = 1
+            if (clientVersion && serverVersion && compareVersions(clientVersion, serverVersion) > 0) {
+              if (responseData.firmware) {
+                responseData.firmware.force = 1;
+              }
+            }
+            
+            // Return JSON response
+            return new Response(JSON.stringify(responseData), {
               headers: {
                 "Content-Type": "application/json",
               },
