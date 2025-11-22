@@ -51,6 +51,7 @@ export default {
           
           // Get name from ota.json (in firmware object)
           const serverName = data.default?.firmware?.name;
+          const serverEnable = data.default?.firmware?.enable;
           
           // Get version from client (in application object)
           const clientVersion = requestBody?.application?.version;
@@ -59,7 +60,83 @@ export default {
           const serverVersion = data.default?.firmware?.version;
           
           // Compare names
-          if (clientName && clientName === serverName) {
+          if (clientName && clientName === serverName && serverEnable) {
+            // Create response data (deep copy to avoid mutation)
+            const responseData = JSON.parse(JSON.stringify(data.default));
+            
+            // Compare versions - if client version > server version, set force = 1
+            if (clientVersion && serverVersion && compareVersions(clientVersion, serverVersion) > 0) {
+              if (responseData.firmware) {
+                responseData.firmware.force = 1;
+              }
+            }
+            
+            // Return JSON response
+            return new Response(JSON.stringify(responseData), {
+              headers: {
+                "Content-Type": "application/json",
+              },
+            });
+          } else {
+            // If not matched, return JSON but set url = ""
+            const responseData = { ...data.default };
+            if (responseData.firmware) {
+              responseData.firmware.url = "";
+            }
+            return new Response(JSON.stringify(responseData), {
+              headers: {
+                "Content-Type": "application/json",
+              },
+            });
+          }
+        } catch (error) {
+          // If there is an error parsing JSON, return JSON but set url = ""
+          const responseData = { ...data.default };
+          if (responseData.firmware) {
+            responseData.firmware.url = "";
+          }
+          return new Response(JSON.stringify(responseData), {
+            headers: {
+              "Content-Type": "application/json",
+            },
+          });
+        }
+      }
+
+      // Handle GET request (return normal JSON)
+      return new Response(JSON.stringify(data.default), {
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
+    }
+
+    // Handle GET/POST /ota.json
+    if (url.pathname === "/ota_v2" || url.pathname === "/ota_v2/") {
+      // Import JSON file
+      const data = await import("../ota_v2.json");
+
+      // Handle POST request
+      if (request.method === "POST") {
+        try {
+          // Parse JSON body from request
+          const requestBody = await request.json() as RequestBody;
+          
+          // Get name from client (in board object)
+          const clientName = requestBody?.board?.name;
+          
+          // Get name from ota.json (in firmware object)
+          const serverName = data.default?.firmware?.name;
+          const serverEnable = data.default?.firmware?.enable;
+          
+          // Get version from client (in application object)
+          const clientVersion = requestBody?.application?.version;
+          
+          // Get version from ota.json (in firmware object)
+          const serverVersion = data.default?.firmware?.version;
+          
+          // Compare names
+          if (clientName && clientName === serverName && serverEnable) {
             // Create response data (deep copy to avoid mutation)
             const responseData = JSON.parse(JSON.stringify(data.default));
             
