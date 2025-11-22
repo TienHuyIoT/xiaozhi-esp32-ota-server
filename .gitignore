@@ -47,6 +47,7 @@ bower_components
 # Compiled binary addons (https://nodejs.org/api/addons.html)
 
 build/Release
+ota_v2.json
 
 # Dependency directories
 
@@ -116,6 +117,7 @@ dist
 # https://nextjs.org/blog/next-9-1#public-directory-support
 
 # public
+public/bin
 
 # vuepress build output
 
