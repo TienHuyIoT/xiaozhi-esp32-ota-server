@@ -1,10 +1,10 @@
 {
     "firmware": {
         "name": "xingzhi-cube-1.54tft-wifi",
-        "version": "2.0.5.03",
-        "url": "https://ota-server.xiaozhi-ota.workers.dev/bin/xiaozhi_2.0.5.03.bin",
+        "version": "2.0.5.04",
+        "url": "https://ota-server.xiaozhi-ota.workers.dev/bin/xiaozhi_2.0.5.04.bin",
         "assets_url": "",
-        "size": 3304352,
+        "size": 3307680,
         "force": 0,
         "enable": 1
     }
