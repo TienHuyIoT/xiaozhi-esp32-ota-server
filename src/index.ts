@@ -104,7 +104,11 @@ export default {
       }
 
       // Handle GET request (return normal JSON)
-      return new Response(JSON.stringify(data.default), {
+      const responseData = { ...data.default };
+      if (responseData.firmware) {
+        responseData.firmware.url = "";
+      }
+      return new Response(JSON.stringify(responseData), {
         headers: {
           "Content-Type": "application/json",
         },
@@ -180,7 +184,11 @@ export default {
       }
 
       // Handle GET request (return normal JSON)
-      return new Response(JSON.stringify(data.default), {
+      const responseData = { ...data.default };
+      if (responseData.firmware) {
+        responseData.firmware.url = "";
+      }
+      return new Response(JSON.stringify(responseData), {
         headers: {
           "Content-Type": "application/json",
         },
